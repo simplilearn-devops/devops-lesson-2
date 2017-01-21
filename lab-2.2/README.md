@@ -35,15 +35,15 @@ Copy the public part of the SSH key pair into the build directory
 
 Create a Dockerfile with the following contents. (Use _vi Dockerfile_ or _nano Dockerfile_)
 
-`FROM alpine:latest   
-RUN apk update  
-RUN apk add openssh  
-RUN adduser -g "Student User" -D student && mkdir /home/student/.ssh && echo "student:student" | chpasswd  
-ADD authorized_keys /home/student/.ssh  
-RUN chown -R student.student /home/student && chmod 700 /home/student/.ssh && chmod 600 /home/student/.ssh/authorized_keys  
-RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N ""  
-EXPOSE 22  
-CMD ["/usr/sbin/sshd", “-D”]`
+`FROM alpine:latest`   
+`RUN apk update`  
+`RUN apk add openssh`  
+`RUN adduser -g "Student User" -D student && mkdir /home/student/.ssh && echo "student:student" | chpasswd`  
+`ADD authorized_keys /home/student/.ssh`  
+`RUN chown -R student.student /home/student && chmod 700 /home/student/.ssh && chmod 600 /`home/student/.ssh/authorized_keys`  
+`RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N “”`  
+`EXPOSE 22`  
+`CMD ["/usr/sbin/sshd", “-D”]`
 
 ### Step 4
 
@@ -68,7 +68,7 @@ Exit by typing `exit` or control-D.
 ### Step 5
 
 Clean up
-`docker stop ssh  
-docker rm ssh  
-docker rmi ssh:alpine   
-docker rmi alpine:3.4`
+`docker stop ssh`  
+`docker rm ssh`  
+`docker rmi ssh:alpine`   
+`docker rmi alpine:3.4``
