@@ -10,50 +10,54 @@ Go to Open the Cloud Platform Console at https://console.cloud.google.com. Go to
 
 Run a Docker registry from an official Registry image
 
-Pull a recent version of the Centos Linux container
-* docker pull registry:2
+Pull a recent version of the Centos Linux container  
+`docker pull registry:2`  
 
-Run the registry in a new Docker container. Expose port 5000
-* docker run -d -p 5000:5000 --restart=always --name registry registry:2
+Run the registry in a new Docker container. Expose port 5000  
+`docker run -d -p 5000:5000 --restart=always --name registry registry:2`
 
 ### Step 3
 
 Pull another image and store it in the local Registry
 
-Pull a new image from Docker hub
-* docker pull ubuntu
+Pull a new image from Docker hub  
+`docker pull ubuntu`
 
-Tag the image for the local registry
-* docker tag ubuntu localhost:5000/ubuntu
+Tag the image for the local registry  
+`docker tag ubuntu localhost:5000/ubuntu`
 
-Push the image to the local Registry
-* docker push localhost:5000/ubuntu
+Push the image to the local Registry  
+`docker push localhost:5000/ubuntu`
 
-Remove the image from the local cache
-* docker rmi ubuntu
+Remove the image from the local cache  
+`docker rmi ubuntu`
 
-Confirm it has been removed
-* docker images
+Confirm it has been removed  
+`docker images`
 
 ### Step 4
 
-Pull the image from the local registry
-* docker pull localhost:5000/ubuntu
+Pull the image from the local registry  
+`docker pull localhost:5000/ubuntu`
 
-Confirm it is in the local cache
-* docker images
+Confirm it is in the local cache  
+`docker images`
 
-Run the new image
-* docker run --rm -ti localhost:5000/ubuntu /bin/bash
+Run the new image  
+`docker run -it —rm localhost:5000/ubuntu /bin/bash`
 
-Exit the container
-* exit
+Exit the container  
+`exit`
 
 ### Step 5
 
-Clean up artifacts from the lab
-* docker rm -f $(docker ps -aq)
-* docker rmi $(docker images -q)
+Clean up artifacts from the lab  
+`docker rm -f $(docker ps -aq)`  
+`docker rmi $(docker images -q)`
 
-Exit the SSH session and stop the VM.
+Exit the SSH session.  
+`exit`
+
+Make sure that you stop the VM so that you don’t incur costs.
+
 
