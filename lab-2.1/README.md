@@ -13,7 +13,7 @@ of the browser window. _Select Compute Engine_.
 
 Select _VM Instances_. You should see the virtual machine you created earlier.
 
-### Step2
+### Step 2
 
 Click on the checkbox to the left of the VM name and then select _START_. It will take a few moments to start up.
 
@@ -26,119 +26,94 @@ Click on _SSH_ to start a terminal window.
 Test that Docker has been installed correctly on your computer
 
 The GCE image you used to create this computer already has Docker installed.
-Check to see the version of Docker
-
-* docker --version
+Check to see the version of Docker  
+`docker --version`
 
 ### Step 2
 
 Pull a pre-built Docker image with a very light weight operating system installed
-by pulling the latest version of the Alpine Linux distribution container
+by pulling the latest version of the Alpine Linux distribution container  
+`docker pull alpine`
 
-* docker pull alpine
-
-Notice the size of this image 
-
-* docker images
+Notice the size of this image  
+`docker images`
 
 Run a container based on this image, Give the container the name "client",
-and activate the command shell processor
-
-* docker run -ti --name client alpine /bin/sh
+and activate the command shell processor  
+`docker run -it --name client alpine /bin/sh`
 
 Explore the Alpine Linux distribution by executing various Linux commands
-
-* date
-* pwd
-* whoami
+`date`  
+`pwd`  
+`whoami`  
 
 Do any additional exploration you may want to do
 
-Change to the root user's directory
-
-* cd
+Change to the root user's directory  
+`cd`
 
 Touch a file to create it in the root directory
+`touch testfile`
 
-* touch testfile
+Exit the container  
+`exit`
 
-Exit the container
+View the running containers (you should see none as you exited the last container)  
+`docker ps`
 
-* exit
+View all containers.  
+You will see a non-running but still available container named "client"  
+`docker ps -a`
 
-View the running containers (you should see none as you exited the last container)
+Restart the container  
+`docker restart client`
 
-* docker ps
+Connect your terminal to the running container  
+`docker attach client`
 
-View all containers
-You will see a non-running but still available container named "client"
+Verify that the file you placed in the root directory is still there  
+`cd`
+`ls -la`
 
-* docker ps -a
+Exit   
+`exit`
 
-Restart the container
-
-* docker restart client
-
-Connect your terminal to the running container
-
-* docker attach client
-
-Verify that the file you placed in the root directory is still there
-
-* cd root
-* ls
-
-Exit 
-
-* exit
-
-Now delete the container
-* docker rm client
+Now delete the container  
+`docker rm client`
 
 ### Step 3
 
-Pull a pre-built Docker image with a heavier weight operating system
+Pull a pre-built Docker image with a heavier weight operating system  
+Pull the latest version of the Debian Linux distribution container  
+`docker pull debian`
 
-Pull the latest version of the Debian Linux distribution container
+Notice the size fo this image and compare it with Alpine  
+`docker images `
 
-* docker pull debian
+Run a container based on this image and activate the command shell processor  
+`docker run --rm -ti debian /bin/bash`
 
-Notice the size fo this image and compare it with Alpine
+Explore the Debian Linux distribution by executing various Linux commands  
+`date`  
+`time`  
+`pwd`  
+`whoami`  
 
-* docker images 
-
-Run a container based on this image and activate the command shell processor
-
-* docker run --rm -ti debian /bin/bash
-
-Explore the Debian Linux distribution by executing various Linux commands
-
-* date
-* time
-* pwd
-* whoami
-
-Exit the container
-
-* exit
+Exit the container  
+`exit`
 
 ### Step 4
 
-Run a container with a program already installed
+Run a container with a program already installed.  
+Pull the hello-world image.  
+`docker pull hello-world`
 
-Pull the hello-world image
-
-* docker pull hello-world
-
-Run the hello-world container and program
-
-* docker run hello-world
+Run the hello-world container and program.  
+`docker run hello-world`
 
 ### Step 5
 
-Clean up after the lab
-
-* docker rm -f $(docker ps -aq)
-* docker rmi $(docker images -q)
-
+Clean up after the labi.  
+`docker rm -f $(docker ps -aq)`  
+`docker rmi $(docker images -q)`  
 
