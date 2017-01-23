@@ -44,7 +44,7 @@ Confirm it is in the local cache
 `docker images`
 
 Run the new image  
-`docker run -it —rm localhost:5000/ubuntu /bin/bash`
+`docker run -it --rm localhost:5000/ubuntu /bin/bash`
 
 Exit the container  
 `exit`
