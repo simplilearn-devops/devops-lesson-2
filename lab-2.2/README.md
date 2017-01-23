@@ -39,13 +39,13 @@ Create a Dockerfile with the following contents. (Use _vi Dockerfile_ or _nano D
 `RUN apk update`  
 `RUN apk add openssh`  
 `RUN adduser -g "Student User" -D student && mkdir /home/student/.ssh`  
-`RUN echo student:student" | chpasswd`  
+`RUN echo "student:student" | chpasswd`  
 `ADD authorized_keys /home/student/.ssh`  
 `RUN chown -R student.student /home/student`  
 `RUN chmod 700 /home/student/.ssh && chmod 600 /home/student/.ssh/authorized_keys`  
-`RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N “”`    
+`RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N ""`    
 `EXPOSE 22`  
-`CMD ["/usr/sbin/sshd", “-D”]`
+`CMD ["/usr/sbin/sshd", "-D"]`
 
 ### Step 4
 
@@ -60,6 +60,9 @@ See that the image got created.
 Run the new container which will contain your public SSH key and run the SSH daemon  
 `docker run -d -p 2022:22 --name ssh ssh:alpine`
 
+Make sure there were no errors.  
+`docker logs ssh`
+
 Connect to the Docker container using your the Linux ssh client on your computer  
 `ssh -p 2022 student@localhost`
 
@@ -73,4 +76,4 @@ Clean up
 `docker stop ssh`  
 `docker rm ssh`  
 `docker rmi ssh:alpine`   
-`docker rmi alpine:3.4`
+`docker rmi alpine:latest`
