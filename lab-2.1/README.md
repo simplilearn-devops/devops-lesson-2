@@ -19,6 +19,8 @@ Click on the checkbox to the left of the VM name and then select _START_. It wil
 
 Click on _SSH_ to start a terminal window.
 
+Make sure that you are the `student` user. If not click on the gear icon in the top right corner and change Linux user.
+
 ## Working with Docker.
 
 ### Step 1
@@ -72,7 +74,7 @@ Connect your terminal to the running container
 `docker attach client`
 
 Verify that the file you placed in the root directory is still there  
-`cd`
+`cd`  
 `ls -la`
 
 Exit   
